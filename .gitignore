@@ -29,6 +29,12 @@ media
 *.py[cod]
 *$py.class
 
+#docs
+docs/
+.buildinfo 
+.doctrees/
+
+
 
 #secret key
 secret_key.py

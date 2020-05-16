@@ -5,6 +5,10 @@ from django.views import View
 
 
 def home(request):
+    """
+        collects all the students from the database and render `` home.html ``
+
+    """
     students = Student.objects.all()
     return render(request, 'home.html', {'students': students})
 
@@ -15,6 +19,14 @@ def about(request):
 
 
 def contact(request):
+    """
+        if the method is `` GET `` , display the empty form at `` contact.html ``
+
+        if the method is ``POST `` and the form is valid, save the form and redirect
+        to `` home``
+
+
+    """
     if request.method == 'GET':
         print('Get req')
         return render(request, 'contact.html')
@@ -49,16 +61,25 @@ def contact(request):
 
 
 class RegisterView(View):
+    """
+        class based view to register a new student
+    """
 
     template = 'register.html'
     model = Student
 
     def get(self, request):
+        """
+            if the method is get, display the empty registration from at `` register.html ``
+        """
         form = UserRegisterForm()
         return render(request, self.template, {'form': form})
 
 
     def post(self, request):
+        """
+            hello
+        """
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
